@@ -360,10 +360,10 @@ def test_worker_lease_and_retry(client):
             c,
             """
             UPDATE evaluation_jobs
-            SET lease_expires_at=:t
+            SET lease_expires_at =
+                clock_timestamp() - INTERVAL '1 second'
             WHERE attempt_id=:a
             """,
-            t=now() - timedelta(seconds=1),
             a=b["attempt_id"],
         )
 
@@ -716,3 +716,168 @@ def test_locale_and_auth_errors(client):
         )
 
     assert client.get("/api/v1/me").status_code == 401
+    
+    
+def test_claim_ignores_worker_clock_skew(client, monkeypatch):
+    s = ready(client)
+    b = answer(s)
+
+    response = post(
+        client,
+        "/sessions/" + s["session_id"] + "/attempts",
+        b,
+    )
+    assert response.status_code == 202, response.text
+
+    # Worker의 OS 시계가 DB보다 느려도
+    # 즉시 등록된 작업을 가져와야 한다.
+    behind = now() - timedelta(hours=1)
+    monkeypatch.setattr(
+        worker,
+        "now",
+        lambda: behind,
+        raising=False,
+    )
+
+    job = worker.claim()
+
+    assert job is not None
+    assert str(job["attempt_id"]) == b["attempt_id"]
+
+
+def test_finish_ignores_worker_clock_jump(client, monkeypatch):
+    s = ready(client)
+    b = answer(s)
+
+    response = post(
+        client,
+        "/sessions/" + s["session_id"] + "/attempts",
+        b,
+    )
+    assert response.status_code == 202, response.text
+
+    job = worker.claim()
+
+    assert job is not None
+    assert str(job["attempt_id"]) == b["attempt_id"]
+    assert worker.prepare(job) is not None
+
+    # OS 시계 변경으로 아직 유효한 DB lease를
+    # 만료 처리하면 안 된다.
+    ahead = now() + timedelta(hours=1)
+    monkeypatch.setattr(
+        worker,
+        "now",
+        lambda: ahead,
+        raising=False,
+    )
+
+    assert worker.finish(job, GOOD, model="fixture")
+    assert fetch(client, s)["phase"] == "feedback"
+
+
+def test_expired_lease_is_rejected_before_evaluation(
+    client,
+    monkeypatch,
+):
+    s = ready(client)
+    b = answer(s)
+
+    response = post(
+        client,
+        "/sessions/" + s["session_id"] + "/attempts",
+        b,
+    )
+    assert response.status_code == 202, response.text
+
+    job = worker.claim()
+    assert job is not None
+
+    with engine.begin() as c:
+        run(
+            c,
+            """
+            UPDATE evaluation_jobs
+            SET lease_expires_at =
+                clock_timestamp() - INTERVAL '1 second'
+            WHERE attempt_id=:a
+            """,
+            a=b["attempt_id"],
+        )
+
+    behind = now() - timedelta(hours=1)
+    monkeypatch.setattr(
+        worker,
+        "now",
+        lambda: behind,
+        raising=False,
+    )
+
+    assert worker.prepare(job) is None
+    assert not worker.finish(job, GOOD, model="fixture")
+
+
+def test_retry_uses_database_clock(client, monkeypatch):
+    from app import service
+
+    s = ready(client)
+    b = answer(s)
+
+    response = post(
+        client,
+        "/sessions/" + s["session_id"] + "/attempts",
+        b,
+    )
+    assert response.status_code == 202, response.text
+
+    job = worker.claim()
+
+    assert job is not None
+    assert worker.prepare(job) is not None
+    assert worker.finish(job, error="EVALUATION_TIMEOUT")
+
+    s = fetch(client, s)
+
+    # API 서버의 시계가 빨라도 재시도 작업은 즉시 실행 가능해야 한다.
+    ahead = now() + timedelta(hours=1)
+    monkeypatch.setattr(service, "now", lambda: ahead)
+
+    response = post(
+        client,
+        "/attempts/" + b["attempt_id"] + "/retry-evaluation",
+        {"expected_version": s["version"]},
+    )
+    assert response.status_code == 202, response.text
+
+    retried = worker.claim()
+
+    assert retried is not None
+    assert str(retried["attempt_id"]) == b["attempt_id"]
+    assert retried["run_count"] == 2
+
+
+def test_only_one_worker_claims_a_job(client):
+    from concurrent.futures import ThreadPoolExecutor
+
+    s = ready(client)
+    b = answer(s)
+
+    response = post(
+        client,
+        "/sessions/" + s["session_id"] + "/attempts",
+        b,
+    )
+    assert response.status_code == 202, response.text
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        jobs = list(
+            pool.map(
+                lambda _: worker.claim(),
+                range(2),
+            )
+        )
+
+    claimed = [job for job in jobs if job is not None]
+
+    assert len(claimed) == 1
+    assert str(claimed[0]["attempt_id"]) == b["attempt_id"]

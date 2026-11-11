@@ -14,7 +14,7 @@ def upgrade():
         Path(__file__).resolve().parents[2]
         / "app"
         / "schema.sql"
-    ).read_text()
+    ).read_text(encoding="utf-8")
 
     op.get_bind().exec_driver_sql(sql)
 

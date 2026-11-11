@@ -1026,16 +1026,16 @@ def retry(c, u, d, aid, b):
         c,
         """
         UPDATE evaluation_jobs
-        SET status='queued',
+        SET
+            status='queued',
             lease_token=NULL,
             lease_expires_at=NULL,
             error_code=NULL,
-            next_retry_at=:t,
-            updated_at=:t
+            next_retry_at=clock_timestamp(),
+            updated_at=clock_timestamp()
         WHERE attempt_id=:a
         """,
         a=aid,
-        t=now(),
     )
 
     save_session(c, s)
