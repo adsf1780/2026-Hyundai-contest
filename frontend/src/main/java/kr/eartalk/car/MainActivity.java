@@ -500,7 +500,7 @@ public class MainActivity extends Activity {
                     () -> command("ACK_FEEDBACK",obj("attempt_id",s.optString("pending_attempt_id"),"action",action),false));
             } else button("다음",true,() -> command("ADVANCE",obj("item_id",item,"from_phase",phase),false));
             Locale locale = phase.equals("example") ? Locale.US : Locale.KOREA;
-            button("소리로 듣기",false,() -> speak(phrase,locale));
+            button("다시 듣기",false,() -> speak(phrase,locale));
             if (foreground && (vehicleVoice != null ? vehicleVoice.canSpeak() : voiceReady)) speak(phrase,locale);
         }
         button("오늘은 여기까지",false,() -> command("PAUSE",obj("reason","session_exit"),true));
