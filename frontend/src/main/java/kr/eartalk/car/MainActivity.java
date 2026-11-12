@@ -124,16 +124,21 @@ public class MainActivity extends Activity {
         shell.addView(frame,new LinearLayout.LayoutParams(0,-1,1));
         frame.setOrientation(LinearLayout.VERTICAL);
         frame.setBackgroundColor(dark ? 0xff101e1a : SURFACE);
-        frame.setPadding(dp(28), dp(16), dp(28), dp(12));
+        boolean historyDashboard = section.equals("학습 기록") && getResources().getConfiguration().screenWidthDp >= 700;
+        frame.setPadding(dp(28), dp(historyDashboard ? 10 : 16), dp(28), dp(historyDashboard ? 8 : 12));
         TextView brand = label(nav ? section : "이어톡   /   " + section, 16, dark ? MINT : GREEN);
         frame.addView(brand);
-        ScrollView scroll = new ScrollView(this);
-        frame.addView(scroll);
         content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
-        content.setPadding(0, dp(12), 0, dp(16));
-        scroll.addView(content);
-        TextView title = label(heading, 31, dark ? Color.WHITE : INK);
+        content.setPadding(0, dp(historyDashboard ? 4 : 12), 0, dp(historyDashboard ? 0 : 16));
+        if (historyDashboard) {
+            frame.addView(content,new LinearLayout.LayoutParams(-1,0,1));
+        } else {
+            ScrollView scroll = new ScrollView(this);
+            frame.addView(scroll);
+            scroll.addView(content);
+        }
+        TextView title = label(heading, historyDashboard ? 24 : 31, dark ? Color.WHITE : INK);
         title.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         content.addView(title);
     }
@@ -375,16 +380,24 @@ public class MainActivity extends Activity {
         });
     }
     void history() {
-        page("학습 기록","이번 주 학습 리듬");
-        java.time.LocalDate end = java.time.LocalDate.now();
-        load(() -> api.get("progress?from="+end.minusDays(6)+"&to="+end), r -> {
-            JSONObject data = (JSONObject)r, totals = data.getJSONObject("totals");
-            line("완료한 수업  "+totals.getInt("completed_sessions")+"개    ·    학습한 표현  "+totals.getInt("graded_items")+"개");
-            JSONArray days = data.getJSONArray("days");
-            for (int i=days.length()-1;i>=0;i--) {
-                JSONObject day=days.getJSONObject(i);
-                line(day.getString("date")+"     수업 "+day.getInt("completed_sessions")+"개    표현 "+day.getInt("graded_items")+"개");
-            }
+        history(java.time.YearMonth.now());
+    }
+
+    void history(java.time.YearMonth month) {
+        page("학습 기록","조금씩 쌓인 변화가 보여요");
+        TextView loading = label("학습 기록을 불러오는 중…",16,GREEN);
+        content.addView(loading);
+        java.time.LocalDate today = java.time.LocalDate.now();
+        java.time.LocalDate end = month.equals(java.time.YearMonth.from(today)) ? today : month.atEndOfMonth();
+        java.time.YearMonth previous = month.minusMonths(1);
+        load(() -> obj("current",api.get("progress?from="+month.atDay(1)+"&to="+end),
+                "previous",api.get("progress?from="+previous.atDay(1)+"&to="+previous.atEndOfMonth())), r -> {
+            content.removeView(loading);
+            JSONObject data = (JSONObject)r;
+            LearningHistoryView dashboard = new LearningHistoryView(this,month,end,data.getJSONObject("current"),
+                    data.getJSONObject("previous"), selected -> { if (!busy) history(selected); });
+            boolean wide = getResources().getConfiguration().screenWidthDp >= 700;
+            content.addView(dashboard,new LinearLayout.LayoutParams(-1,wide ? 0 : -2,wide ? 1 : 0));
         });
     }
     void settings() {

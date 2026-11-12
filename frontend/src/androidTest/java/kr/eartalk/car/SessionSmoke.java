@@ -71,6 +71,10 @@ public class SessionSmoke extends Instrumentation {
         throw new AssertionError("선택창 버튼을 찾지 못했습니다. " + text);
     }
     @Override public void onStart() {
+        if ("true".equals(args.getString("historyOnly"))) {
+            HistorySmoke.run(this);
+            return;
+        }
         Bundle report=new Bundle();
         SharedPreferences prefs = getTargetContext().getSharedPreferences("eartalk",Context.MODE_PRIVATE);
         Map<String, ?> original = prefs.getAll();

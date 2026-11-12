@@ -23,6 +23,19 @@ python -m uvicorn app.main:app --port 8000
 
 AI 피드백을 받으려면 서버 측에서 모델 설정을 마치고 별도 터미널에 `python -m app.worker`를 실행합니다. 평가 중인 답변은 서버의 세션 상태를 다시 조회해 반영합니다.
 
+## 학습 기록
+
+기존 `GET /api/v1/progress`로 선택한 달의 완료 수업, 학습 표현, 학습 시간을 표시합니다. 이전 달과의 수업 수 비교와 월·주 이동을 지원하며, 주간 그래프는 표시된 날짜 범위의 학습 시간과 평가 완료 표현 수를 나타냅니다. 표현 수에는 반복 학습이 포함됩니다. 학습 시간은 서버가 제공하는 추정값이며 `null`은 0초와 구분해 미측정으로 표시합니다. 현재 앱은 시간 측정 이벤트를 전송하지 않으므로 기존 계정에서 시간 값이 없을 수 있습니다. 이어하기 성공률과 주제별 숙련도는 현재 API에 없어 표시하지 않습니다.
+
+실제 계정이나 서버 데이터를 변경하지 않는 화면 검증은 실행 중인 에뮬레이터에서 다음과 같이 실행합니다. 미측정 시간, 빈 기록, 월·주 이동, 그래프 렌더링을 확인합니다.
+
+```powershell
+.\gradlew.bat assembleDebug assembleDebugAndroidTest
+adb -e install -r build/outputs/apk/debug/EarTalk-debug.apk
+adb -e install -r build/outputs/apk/androidTest/debug/EarTalk-debug-androidTest.apk
+adb -e shell am instrument -w -e historyOnly true kr.eartalk.car.test/kr.eartalk.car.SessionSmoke
+```
+
 ## 차량에서 확인하기
 
 [공식 에뮬레이터 설치 가이드](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator)에 따라 SDK Manager에서 Windows용 업데이트 사이트를 등록하고, 약관 확인 후 API 34의 Pleos Connect 시스템 이미지를 설치합니다. Device Manager에서 Automotive → Pleos Connect v2.1.0을 선택합니다.
