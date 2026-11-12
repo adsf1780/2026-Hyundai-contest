@@ -5,7 +5,6 @@ from uuid import uuid4
 
 import json
 import httpx
-import requests
 from pydantic import ValidationError
 
 from .contracts import Evaluation
@@ -569,8 +568,8 @@ def tick(evaluator=evaluate):
 
 
 if __name__ == "__main__":
-    if not os.getenv("GEMINI_API_KEY") or not os.getenv("GEMINI_MODEL"):
-        raise SystemExit("GEMINI_API_KEY와 GEMINI_MODEL을 설정하세요.")
+    if not os.getenv("API_KEY") or not os.getenv("MODEL"):
+        raise SystemExit("API_KEY와 MODEL을 설정하세요.")
 
     while True:
         try:
