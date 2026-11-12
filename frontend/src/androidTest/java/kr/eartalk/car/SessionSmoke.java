@@ -37,7 +37,7 @@ public class SessionSmoke extends Instrumentation {
             AtomicReference<Boolean> clicked=new AtomicReference<>(false);
             runOnMainSync(() -> {
                 MainActivity main=(MainActivity)activity;
-                if (main.isFinishing()) return;
+                if (main.isFinishing() || main.isLoading()) return;
                 View view=find(main.getWindow().getDecorView(),text);
                 if (view!=null) {
                     while (!view.isClickable() && view.getParent() instanceof View) view=(View)view.getParent();

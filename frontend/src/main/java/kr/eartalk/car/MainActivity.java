@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
     private Api api;
     private LinearLayout content;
     private TextToSpeech voice;
+    private PleosSpeech vehicleVoice;
     private AudioManager audio;
     private boolean voiceReady, foreground, capturing, busy;
     private JSONObject session, preferences;
@@ -43,10 +44,12 @@ public class MainActivity extends Activity {
         super.onCreate(state);
         api = new Api(this);
         audio = getSystemService(AudioManager.class);
-        voice = new TextToSpeech(this, status -> voiceReady = status == TextToSpeech.SUCCESS);
         if (getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
+            vehicleVoice = new PleosSpeech(getApplicationContext(), this::notifySpeech);
             try { driving = new DrivingState(this,this::restrictionChanged); }
             catch (RuntimeException | LinkageError unavailable) { restrictionChanged(true); }
+        } else {
+            voice = new TextToSpeech(this, status -> voiceReady = status == TextToSpeech.SUCCESS);
         }
         if (!restricted) landing();
     }
@@ -57,7 +60,8 @@ public class MainActivity extends Activity {
         if (restricted == value) return;
         restricted = value;
         if (!value) { landing(); return; }
-        if (capturing) { finishActivity(7); capturing=false; recognitionSession=null; }
+        if (capturing && vehicleVoice == null) finishActivity(7);
+        stopSpeech();
         JSONObject current = session;
         page("주행 제한","주차 후 학습을 이어가세요");
         busy=false;
@@ -88,7 +92,7 @@ public class MainActivity extends Activity {
     void page(String section, String heading) {
         generation++;
         handler.removeCallbacksAndMessages(null);
-        if (voice != null) voice.stop();
+        stopSpeech();
         sectionName = section;
         dark = section.startsWith("학습   ") || section.equals("이어하기") || section.equals("학습 결과");
         boolean nav = Arrays.asList("홈","전체 수업","복습","학습 기록","설정").contains(section);
@@ -166,6 +170,7 @@ public class MainActivity extends Activity {
     }
 
     interface Job { Object run() throws Exception; }
+    boolean isLoading() { return busy; }
     interface Result { void accept(Object value) throws Exception; }
     void load(Job job, Result done) {
         final int ticket = generation;
@@ -374,6 +379,7 @@ public class MainActivity extends Activity {
     void detail(String sid) { load(() -> api.get("sessions/" + sid), r -> renderSession((JSONObject)r)); }
 
     void command(String type, JSONObject payload, boolean exit) {
+        stopSpeech();
         String sid = session.optString("session_id");
         JSONObject body = obj("event_id",id(),"type",type,"payload",payload,"expected_version",session.optInt("version"),
             "occurred_at",Instant.now().toString());
@@ -458,28 +464,52 @@ public class MainActivity extends Activity {
             } else button("다음",true,() -> command("ADVANCE",obj("item_id",item,"from_phase",phase),false));
             Locale locale = phase.equals("example") ? Locale.US : Locale.KOREA;
             button("소리로 듣기",false,() -> speak(phrase,locale));
-            if (foreground && voiceReady) speak(phrase,locale);
+            if (foreground && (vehicleVoice != null ? vehicleVoice.canSpeak() : voiceReady)) speak(phrase,locale);
         }
         button("오늘은 여기까지",false,() -> command("PAUSE",obj("reason","session_exit"),true));
     }
 
     void speak(String phrase, Locale locale) {
-        if (!foreground || !voiceReady || voice.setLanguage(locale) < 0) {
+        if (!foreground || capturing) return;
+        boolean ready = vehicleVoice != null ? vehicleVoice.canSpeak() : voiceReady && voice.setLanguage(locale) >= 0;
+        if (!ready) {
             Toast.makeText(this,"해당 언어의 음성 출력을 사용할 수 없어요.",Toast.LENGTH_SHORT).show();
             return;
         }
         if (audio.requestAudioFocus(focus,AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) return;
-        voice.setSpeechRate((float)preferences.optDouble("speech_rate",1));
-        voice.speak(phrase,TextToSpeech.QUEUE_FLUSH,null,id());
+        if (vehicleVoice != null) vehicleVoice.speak(phrase, locale);
+        else {
+            voice.setSpeechRate((float)preferences.optDouble("speech_rate",1));
+            voice.speak(phrase,TextToSpeech.QUEUE_FLUSH,null,id());
+        }
+    }
+
+    void notifySpeech(String message) {
+        if (!isDestroyed()) Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    void stopSpeech() {
+        if (vehicleVoice != null) {
+            capturing = false;
+            recognitionSession = null;
+            vehicleVoice.stop();
+        }
+        if (voice != null) voice.stop();
     }
 
     void listen() {
-        voice.stop();
+        if (capturing || restricted || !foreground) return;
+        stopSpeech();
         audio.abandonAudioFocus(focus);
+        recognitionSession = session.optString("session_id");
+        if (vehicleVoice != null) {
+            capturing = vehicleVoice.listen(this::recognized);
+            notifySpeech(capturing ? "듣고 있어요. 영어로 답해 주세요." : "차량 음성 인식 서비스가 준비되지 않았어요.");
+            return;
+        }
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en-US");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognitionSession = session.optString("session_id");
         try { capturing=true; startActivityForResult(intent,7); }
         catch (ActivityNotFoundException e) {
             capturing=false;
@@ -489,21 +519,26 @@ public class MainActivity extends Activity {
 
     @Override protected void onActivityResult(int code,int result,Intent data) {
         super.onActivityResult(code,result,data);
-        capturing=false;
-        if (code!=7 || session==null || !session.optString("session_id").equals(recognitionSession)) return;
+        if (code!=7) return;
         ArrayList<String> words = data==null ? null : data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-        if (result!=RESULT_OK || words==null || words.isEmpty() || words.get(0).trim().isEmpty()) {
+        recognized(result==RESULT_OK && words!=null && !words.isEmpty() ? words.get(0) : null);
+    }
+
+    void recognized(String transcript) {
+        capturing=false;
+        if (restricted || session==null || !session.optString("session_id").equals(recognitionSession)) return;
+        if (transcript==null || transcript.trim().isEmpty()) {
             Toast.makeText(this,"답변을 듣지 못했어요. 다시 말해 주세요.",Toast.LENGTH_SHORT).show(); return;
         }
         JSONObject answer=obj("attempt_id",id(),"client_capture_id",id(),"expected_version",session.optInt("version"),
-            "session_item_id",session.optString("current_item_id"),"capture_status","recognized","transcript",words.get(0),
+            "session_item_id",session.optString("current_item_id"),"capture_status","recognized","transcript",transcript,
             "recognition_locale","en-US","captured_at",Instant.now().toString());
         String sid=recognitionSession;
         load(() -> { api.saveAnswer("sessions/"+sid+"/attempts",answer); api.flushAnswer(); return null; }, r -> detail(sid));
     }
 
     void interrupt(String reason) {
-        if (voice!=null) voice.stop();
+        stopSpeech();
         if (busy && session != null) pendingPause = reason;
         if (!busy && !capturing && session!=null && "active".equals(session.optString("status"))) {
             handler.removeCallbacksAndMessages(null);
@@ -513,7 +548,7 @@ public class MainActivity extends Activity {
     @Override protected void onResume() { super.onResume(); foreground=true; }
     @Override protected void onStop() {
         foreground=false;
-        if (!capturing) interrupt("app_background");
+        if (vehicleVoice!=null || !capturing) interrupt("app_background");
         audio.abandonAudioFocus(focus);
         super.onStop();
     }
@@ -529,6 +564,7 @@ public class MainActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
         audio.abandonAudioFocus(focus);
         if (voice!=null) voice.shutdown();
+        if (vehicleVoice!=null) vehicleVoice.close();
         if (driving!=null) driving.close();
         io.shutdown();
         super.onDestroy();

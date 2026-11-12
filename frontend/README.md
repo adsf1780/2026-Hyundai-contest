@@ -27,5 +27,7 @@ AI 피드백을 받으려면 서버 측에서 모델 설정을 마치고 별도 
 
 [공식 에뮬레이터 설치 가이드](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator)에 따라 SDK Manager에서 Windows용 업데이트 사이트를 등록하고, 약관 확인 후 API 34의 Pleos Connect 시스템 이미지를 설치합니다. Device Manager에서 Automotive → Pleos Connect v2.1.0을 선택합니다.
 
-이 버전의 음성 출력과 입력은 Android TTS와 영어 음성 인식 인텐트를 사용합니다. 음성 인식 서비스 또는 언어 데이터가 설치되어 있어야 합니다. 차량에서는 Android Automotive의 주행 중 사용자 인터페이스 제한을 구독합니다. 제한 상태에서는 수업과 입력 화면을 닫고 로컬 음성 출력을 멈춥니다. 주차 상태로 돌아온 뒤 사용자가 다시 수업을 선택합니다. Pleos 전용 STT/TTS 및 Gleo 음성 호출은 후속 연동 항목입니다.
+차량에서는 Pleos TextToSpeech와 SpeechToText 3.3.1의 온디바이스 모드를 사용합니다. 안내는 한국어, 예문과 답변 인식은 영어입니다. 음성 답변을 시험하려면 [Pleos 마이크 설정 안내](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/configure-pleos-connect-emulator)에 따라 에뮬레이터의 마이크 입력을 켜고 수업에서 **영어로 답하기**를 누릅니다. 일반 Android 기기에서는 기기의 TTS와 음성 인식 서비스를 사용합니다.
+
+차량에서는 Android Automotive의 주행 중 사용자 인터페이스 제한을 구독합니다. 제한 상태에서는 수업과 입력 화면을 닫고 음성 입출력을 멈춥니다. 주차 상태로 돌아온 뒤 사용자가 다시 수업을 선택합니다. Gleo 음성 호출은 후속 연동 항목입니다.
 
