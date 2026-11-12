@@ -287,6 +287,49 @@ public class MainActivity extends Activity {
         if (active == null) start("lesson",lesson);
         else detail(active.optString("session_id"));
     }
+    void chooseSession(String mode, JSONObject lesson) {
+        if (active == null) {
+            start(mode,lesson);
+            return;
+        }
+        String sid = active.optString("session_id");
+        String title = lesson == null ? "복습" : lesson.optString("title");
+        new AlertDialog.Builder(this)
+            .setTitle("다른 학습을 시작할까요?")
+            .setMessage("현재 수업을 중도 종료하고 ‘" + title + "’을 시작합니다. 종료한 수업은 이어서 학습할 수 없습니다.")
+            .setPositiveButton("종료하고 시작",(dialog,which) -> {
+                if (!busy && !restricted) replaceSession(sid,mode,lesson);
+            })
+            .setNeutralButton("이어서 학습",(dialog,which) -> {
+                if (!busy && !restricted) detail(sid);
+            })
+            .setNegativeButton("취소",null)
+            .show();
+    }
+    void replaceSession(String sid, String mode, JSONObject lesson) {
+        stopSpeech();
+        JSONObject body = obj("session_id",id(),"mode",mode,"entry_point","touch");
+        load(() -> {
+            if (lesson != null) {
+                String lessonId = lesson.getString("lesson_id");
+                int version = lesson.getInt("version");
+                api.get("lessons/" + lessonId + "/versions/" + version);
+                body.put("lesson_id",lessonId).put("lesson_version",version);
+            }
+            api.flushAnswer();
+            JSONObject previous = api.get("sessions/" + sid);
+            if (Arrays.asList("active","paused").contains(previous.getString("status"))) {
+                api.request("POST","sessions/" + sid + "/commands",
+                    obj("event_id",id(),"expected_version",previous.getInt("version"),
+                        "type","ABANDON","occurred_at",Instant.now().toString(),
+                        "payload",obj("reason","discard_progress")),id());
+            }
+            return api.request("POST","sessions",body,id());
+        }, result -> {
+            active = null;
+            detail(((JSONObject)result).getString("session_id"));
+        });
+    }
     void lessonCards(JSONArray lessons) throws JSONException {
         int columns = getResources().getConfiguration().screenWidthDp >= 720 ? 2 : 1;
         LinearLayout row = null;
@@ -312,11 +355,7 @@ public class MainActivity extends Activity {
             tile.addView(name);
             tile.addView(label(lessonInfo(l),15,0xff52675f));
             tile.setFocusable(true);
-            tile.setOnClickListener(v -> { if (!busy) {
-                if (active == null) openLesson(l);
-                else new AlertDialog.Builder(this).setMessage("진행 중인 수업을 이어갈까요?")
-                    .setPositiveButton("이어서 학습",(d,w) -> openLesson(l)).setNegativeButton("취소",null).show();
-            }});
+            tile.setOnClickListener(v -> { if (!busy) chooseSession("lesson",l); });
         }
     }
     void catalog() {
@@ -328,9 +367,7 @@ public class MainActivity extends Activity {
         load(() -> api.request("GET","review-items?limit=100",null,null), r -> {
             JSONArray list=(JSONArray)r;
             if (list.length()==0) { line("오늘 복습할 표현이 없어요."); return; }
-            button(active==null ? "복습 시작" : "진행 중인 수업 이어하기",true,() -> {
-                if (active==null) start("review",null); else detail(active.optString("session_id"));
-            });
+            button("복습 시작",true,() -> chooseSession("review",null));
             for (int i=0;i<list.length();i++) {
                 JSONObject item=list.getJSONObject(i);
                 line(item.getString("text_en")+"\n"+item.getString("meaning_ko"));
