@@ -1,0 +1,1986 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "KoED EarTalk Driving-safe Empathy Lessons",
+  "license_notice": "Derived from KoED, distributed under CC BY-NC 4.0. KoED's README describes the source as an evaluation benchmark, so this derivative is limited to non-commercial prototype/evaluation use with attribution; obtain rights-holder permission before model training or production use.",
+  "source": {
+    "name": "KoED (Korean Empathetic Dialogues)",
+    "repository": "https://github.com/KUNLP/KoED",
+    "paper": "https://aclanthology.org/2025.ijcnlp-long.44/",
+    "license": "CC BY-NC 4.0",
+    "source_file": "KoED.json",
+    "source_is_cultural_reconstruction_not_literal_translation": true
+  },
+  "classification": {
+    "framework": "CEFR action-oriented approach",
+    "supported_levels": [
+      "A1",
+      "A2",
+      "B1"
+    ],
+    "advr_note_ko": "ADVR은 언어 난이도의 검증 가능한 국제 표준으로 확인되지 않아, A1/A2/B1 표기와 일치하는 CEFR 행동중심 기준을 적용했습니다.",
+    "reference": "https://rm.coe.int/common-european-framework-of-reference-for-languages-learning-teaching/16809ea0d4"
+  },
+  "selection_policy": {
+    "manual_review_required": true,
+    "driving_safety_filter": true,
+    "lesson_item_count": 2,
+    "max_target_words": 22,
+    "source_provenance_per_item": true
+  },
+  "source_statistics": {
+    "dialogue_count": 1360,
+    "turn_count": 7820,
+    "parallel_turn_count": 6002,
+    "fully_parallel_dialogue_count": 627,
+    "fully_parallel_turn_count": 2815,
+    "comma_serialization_token_turn_count": 1843,
+    "scalar_emotion_dialogue_count": 80,
+    "candidate_count_after_driving_safety_and_quality_filter": 705,
+    "candidate_rejection_counts": {
+      "eligible_for_review": 705,
+      "missing_parallel_utterance": 1818,
+      "non_linguistic_english_content": 12,
+      "non_safe_emotion_context": 1902,
+      "partially_parallel_conversation": 3187,
+      "sensitive_or_high_arousal_context": 69,
+      "unresolved_source_artifact": 1,
+      "utterance_length_out_of_range": 126
+    },
+    "emotion_counts": {
+      "afraid": 57,
+      "angry": 68,
+      "annoyed": 98,
+      "anticipating": 103,
+      "anxious": 172,
+      "apprehensive": 106,
+      "ashamed": 70,
+      "caring": 99,
+      "confident": 67,
+      "content": 74,
+      "devastated": 64,
+      "disappointed": 131,
+      "disgusted": 30,
+      "embarrassed": 61,
+      "excited": 120,
+      "faithful": 46,
+      "furious": 49,
+      "grateful": 115,
+      "guilty": 78,
+      "han": 40,
+      "hopeful": 115,
+      "impressed": 55,
+      "jealous": 33,
+      "jeong": 40,
+      "joyful": 116,
+      "lonely": 50,
+      "nostalgic": 106,
+      "prepared": 34,
+      "proud": 110,
+      "sad": 112,
+      "sentimental": 64,
+      "surprised": 72,
+      "terrified": 47,
+      "trusting": 38
+    }
+  },
+  "output_statistics": {
+    "lesson_count": 19,
+    "item_count": 38,
+    "lessons_by_level": {
+      "A1": 3,
+      "A2": 8,
+      "B1": 8
+    },
+    "items_by_level": {
+      "A1": 6,
+      "A2": 16,
+      "B1": 16
+    }
+  },
+  "lessons": [
+    {
+      "slug": "koed-a1-positive-reactions",
+      "title": "좋은 소식에 짧게 반응하기",
+      "topic": "empathy",
+      "level": "A1",
+      "description": "좋은 소식을 들었을 때 쓰는 짧고 긍정적인 반응을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "That is great.",
+          "example_en": "That is great.",
+          "explanation_ko": "상대의 좋은 소식에 짧고 긍정적으로 반응하는 표현입니다.",
+          "question_ko": "상대가 좋은 소식을 전했을 때 ‘정말 좋네요’라고 짧게 말해 보세요.",
+          "hint_ko": "That으로 시작해 좋은 소식이라는 반응을 말하세요.",
+          "target_meaning_ko": "정말 좋네요.",
+          "acceptable_answers": [
+            "That is great."
+          ],
+          "source": {
+            "conv_id": "hit:307_conv:615",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "That is great.",
+            "source_utter_ko": "좋네요.",
+            "situation_en": "My husband came home from shopping a couple days before Mother's Day and he gave me some unexpected gifts. He had got me a beautiful diamond ring, along with some other wonderful gifts!",
+            "situation_ko": "남편이 어버이날 며칠 전에 쇼핑을 다녀왔는데, 예기치 않게 선물을 주었어. 아름다운 다이아몬드 반지와 다른 멋진 선물들을 받았어!",
+            "emotions": [
+              "surprised",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "That is great.",
+            "teaching_expression_en": "That is great.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A1",
+            "screened_level_reason_ko": "친숙한 상황에서 쓰는 짧고 직접적인 한 절 발화입니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 3,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "Well, that's awesome! I'm happy for you!",
+          "example_en": "Well, that's awesome! I'm happy for you!",
+          "explanation_ko": "상대의 성과를 더 따뜻하게 축하하는 기본 반응입니다.",
+          "question_ko": "상대의 좋은 결과를 듣고 ‘정말 멋지네요, 당신이 기뻐요’라고 말해 보세요.",
+          "hint_ko": "awesome과 happy for you를 사용해 보세요.",
+          "target_meaning_ko": "정말 멋지네요! 당신이 기뻐요!",
+          "acceptable_answers": [
+            "Well, that's awesome! I'm happy for you!"
+          ],
+          "source": {
+            "conv_id": "hit:403_conv:806",
+            "utter_idx": 8,
+            "source_utter_idx": 8,
+            "source_utter_en": "Well that's awesome! I'm happy for you!",
+            "source_utter_ko": "정말 멋지다! 축하해!",
+            "situation_en": "I am grateful for my parents who helped me along the way when buying my first house. They helped with some groceries and with understanding my loan papers etcc.",
+            "situation_ko": "첫 내집마련을 도와준 부모님께 감사해. 식료품도 좀 사주시고 대출 서류도 이해할 수 있게 도와주셨어.",
+            "emotions": [
+              "grateful",
+              "caring"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Well that's awesome! I'm happy for you!",
+            "teaching_expression_en": "Well, that's awesome! I'm happy for you!",
+            "correction_note_ko": "문장 첫머리에 쉼표를 넣어 읽기 쉬운 표기로 다듬었다."
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A1",
+            "screened_level_reason_ko": "친숙한 상황에서 쓰는 짧고 직접적인 한 절 발화입니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a1-simple-likes",
+      "title": "좋아하는 것을 말하기",
+      "topic": "empathy",
+      "level": "A1",
+      "description": "I love를 써서 좋아하는 것을 간단히 말하는 연습입니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I love candy.",
+          "example_en": "I love candy.",
+          "explanation_ko": "가장 좋아하는 간식처럼 친숙한 대상을 말하는 기본 표현입니다.",
+          "question_ko": "사탕을 정말 좋아한다고 말해 보세요.",
+          "hint_ko": "I love 뒤에 candy를 붙이세요.",
+          "target_meaning_ko": "나는 사탕을 정말 좋아해요.",
+          "acceptable_answers": [
+            "I love candy."
+          ],
+          "source": {
+            "conv_id": "hit:105_conv:211",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "I love candy.",
+            "source_utter_ko": "맞아. 어린이날 선물은 뭔가 특별했잖아. 지금은 어른이 돼서 어린이날 선물을 받을 일은 없지만, 그래도 그때의 설렘을 잊을 수가 없어. 어른이 돼서도 어린이날이 되면 그때의 기분이 떠올라. 뭔가 마음이 몽글몽글해지는 날인 것 같아.",
+            "situation_en": "I can't wait for HAlloween. It is my favorite holifay. I love dressing up with the kids.",
+            "situation_ko": "어린이날은 내가 가장 좋아하는 휴일이야.",
+            "emotions": [
+              "excited",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I love candy.",
+            "teaching_expression_en": "I love candy.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A1",
+            "screened_level_reason_ko": "친숙한 상황에서 쓰는 짧고 직접적인 한 절 발화입니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 3,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "I love Pokemon.",
+          "example_en": "I love Pokemon.",
+          "explanation_ko": "취미나 좋아하는 대상을 간단히 말하는 기본 표현입니다.",
+          "question_ko": "포켓몬을 정말 좋아한다고 말해 보세요.",
+          "hint_ko": "I love 뒤에 Pokemon을 붙이세요.",
+          "target_meaning_ko": "나는 포켓몬을 정말 좋아해요.",
+          "acceptable_answers": [
+            "I love Pokemon."
+          ],
+          "source": {
+            "conv_id": "hit:287_conv:575",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "I love Pokemon.",
+            "source_utter_ko": "와, 포켓몬 게임이라니! 나도 그때 진짜 좋아했었는데. 얼마나 좋았을까!",
+            "situation_en": "One Christmas I was really into the holiday season. I was a kid at the time and well I didn't expect my parents to buy me certain gifts. Ended up I got both Pokemon games and went crazy happy from the gift.",
+            "situation_ko": "어린 시절 크리스마스에 정말 기뻤던 기억이 있어. 부모님이 포켓몬 게임 두 개를 사주셔서 너무 놀라고 행복했어.",
+            "emotions": [
+              "surprised",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I love Pokemon.",
+            "teaching_expression_en": "I love Pokemon.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A1",
+            "screened_level_reason_ko": "친숙한 상황에서 쓰는 짧고 직접적인 한 절 발화입니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 3,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a1-family-basics",
+      "title": "가족에 관해 묻기",
+      "topic": "empathy",
+      "level": "A1",
+      "description": "가족의 중요성을 말하고 아주 기본적인 개인 정보를 묻습니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "Family is important.",
+          "example_en": "Family is important.",
+          "explanation_ko": "가족에 대한 간단한 생각을 한 절로 말하는 표현입니다.",
+          "question_ko": "가족이 중요하다고 말해 보세요.",
+          "hint_ko": "Family is로 시작해 보세요.",
+          "target_meaning_ko": "가족은 중요해요.",
+          "acceptable_answers": [
+            "Family is important."
+          ],
+          "source": {
+            "conv_id": "hit:771_conv:1543",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "Family is important.",
+            "source_utter_ko": "가족은 정말 중요하지.",
+            "situation_en": "My family was never rich when I was growing up. But I've got very fond memories of my extended family in that small house because their company was worth more than diamonds",
+            "situation_ko": "어렸을 때 우리 가족은 가난했어. 하지만 작은 집에서 대가족으로 함께했던 좋은 기억이 있어. 그들의 존재는 다이아몬드보다 소중했어.",
+            "emotions": [
+              "content",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Family is important.",
+            "teaching_expression_en": "Family is important.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A1",
+            "screened_level_reason_ko": "친숙한 상황에서 쓰는 짧고 직접적인 한 절 발화입니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 3,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "Do you have kids?",
+          "example_en": "Do you have kids?",
+          "explanation_ko": "상대의 가족에 관한 기본적인 정보를 조심스럽게 묻는 짧은 질문입니다.",
+          "question_ko": "상대에게 아이가 있는지 물어보세요.",
+          "hint_ko": "Do you have로 시작해 kids를 사용하세요.",
+          "target_meaning_ko": "아이(자녀)가 있나요?",
+          "acceptable_answers": [
+            "Do you have kids?"
+          ],
+          "source": {
+            "conv_id": "hit:771_conv:1543",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "Do you have kids",
+            "source_utter_ko": "너는 아이들이 있니?",
+            "situation_en": "My family was never rich when I was growing up. But I've got very fond memories of my extended family in that small house because their company was worth more than diamonds",
+            "situation_ko": "어렸을 때 우리 가족은 가난했어. 하지만 작은 집에서 대가족으로 함께했던 좋은 기억이 있어. 그들의 존재는 다이아몬드보다 소중했어.",
+            "emotions": [
+              "content",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Do you have kids",
+            "teaching_expression_en": "Do you have kids?",
+            "correction_note_ko": "원문에 빠진 물음표만 보완했다."
+          },
+          "difficulty": {
+            "level": "A1",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": "자동 선별은 물음표를 A2 신호로 보지만, CEFR A1의 개인 정보에 관한 매우 기본적인 질문 과업에 직접 해당합니다.",
+            "features": {
+              "word_count": 4,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-follow-up-questions",
+      "title": "상세한 정보를 더 묻기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "상대의 이야기 뒤에 시간과 다음 계획을 묻는 짧은 후속 질문을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "How old is your son now?",
+          "example_en": "How old is your son now?",
+          "explanation_ko": "가족의 현재 정보를 묻는 일상적인 후속 질문입니다.",
+          "question_ko": "상대의 아들이 지금 몇 살인지 물어보세요.",
+          "hint_ko": "How old is로 시작해 now를 덧붙이세요.",
+          "target_meaning_ko": "아드님은 지금 몇 살인가요?",
+          "acceptable_answers": [
+            "How old is your son now?"
+          ],
+          "source": {
+            "conv_id": "hit:105_conv:210",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "How old is your son now?",
+            "source_utter_ko": "무덤까지 가져갈 비밀이야ㅋㅋ. 너희 아들은 지금 몇 살이야?",
+            "situation_en": "I was joyful when my son was born.",
+            "situation_ko": "아들이 태어났을 때 너무 기뻤어요.",
+            "emotions": [
+              "joyful",
+              "caring"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "How old is your son now?",
+            "teaching_expression_en": "How old is your son now?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 6,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "What will you do with it now?",
+          "example_en": "What will you do with it now?",
+          "explanation_ko": "상대가 얻거나 받은 것의 다음 계획을 묻는 미래 표현입니다.",
+          "question_ko": "그것으로 이제 무엇을 할지 물어보세요.",
+          "hint_ko": "What will you do로 시작해 with it now를 붙이세요.",
+          "target_meaning_ko": "그것으로 이제 무엇을 할 건가요?",
+          "acceptable_answers": [
+            "What will you do with it now?"
+          ],
+          "source": {
+            "conv_id": "hit:1430_conv:2860",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "What will you do with it now?",
+            "source_utter_ko": "세상에, 엄마의 정성이 가득 담긴 담요였네. 다시 쓸 수 있어?",
+            "situation_en": "I was digging through my old stuff yesterday, and I found my old security blanket.",
+            "situation_ko": "어제 옛날 물건들을 정리하다가 내가 어렸을 때 쓰던 보드라운 담요를 발견했어.",
+            "emotions": [
+              "sentimental",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "What will you do with it now?",
+            "teaching_expression_en": "What will you do with it now?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-details-and-plans",
+      "title": "대상과 시점을 묻기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "대화의 세부 대상과 앞으로의 시점을 묻는 질문을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "What type of car was it?",
+          "example_en": "What type of car was it?",
+          "explanation_ko": "과거에 언급된 대상의 종류를 묻는 기본 과거 시제 질문입니다.",
+          "question_ko": "그 차가 어떤 종류의 차였는지 물어보세요.",
+          "hint_ko": "What type of로 시작해 car를 사용하세요.",
+          "target_meaning_ko": "그것은 어떤 종류의 차였나요?",
+          "acceptable_answers": [
+            "What type of car was it?"
+          ],
+          "source": {
+            "conv_id": "hit:157_conv:314",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "What type of car was it?",
+            "source_utter_ko": "그랬겠다. 20살에 차를 갖게 되다니 정말 좋았겠어. 차종은 뭐야?",
+            "situation_en": "I was surprised when my parents picked me up from work in a new car for me. I did not expect that at all!",
+            "situation_ko": "부모님이 새 차로 학교에 저를 데리러 오셨을 때 정말 깜짝 놀랐어요. 전혀 예상하지 못했어요!",
+            "emotions": [
+              "surprised",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "What type of car was it?",
+            "teaching_expression_en": "What type of car was it?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 6,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "When will you wear them?",
+          "example_en": "When will you wear them?",
+          "explanation_ko": "상대가 물건을 사용할 미래 시점을 묻는 질문입니다.",
+          "question_ko": "그것들을 언제 입을지 물어보세요.",
+          "hint_ko": "When will you로 시작해 wear them을 붙이세요.",
+          "target_meaning_ko": "그것들을 언제 입을 건가요?",
+          "acceptable_answers": [
+            "When will you wear them?"
+          ],
+          "source": {
+            "conv_id": "hit:1713_conv:3427",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "When will you wear them?",
+            "source_utter_ko": "좋겠다. 언제 입어볼 거야?",
+            "situation_en": "I went to the store looking for jeans and found a good pair.",
+            "situation_ko": "가게에 가서 청바지를 찾다가 좋은 걸 발견했어.",
+            "emotions": [
+              "content",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "When will you wear them?",
+            "teaching_expression_en": "When will you wear them?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 5,
+              "connectors": [
+                "when"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-asking-about-events",
+      "title": "깜짝 일이 어떻게 생겼는지 묻기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "좋은 일에 반응한 뒤, 과거 사건의 과정을 묻는 표현을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "That's great! How did they surprise you?",
+          "example_en": "That's great! How did they surprise you?",
+          "explanation_ko": "긍정적으로 반응한 뒤 과거의 깜짝 일을 구체적으로 묻습니다.",
+          "question_ko": "좋다고 반응한 뒤, 그들이 어떻게 상대를 놀라게 했는지 물어보세요.",
+          "hint_ko": "That's great 뒤에 How did they surprise you를 이어 보세요.",
+          "target_meaning_ko": "정말 좋네요! 그들은 어떻게 당신을 놀라게 했나요?",
+          "acceptable_answers": [
+            "That's great! How did they surprise you?"
+          ],
+          "source": {
+            "conv_id": "hit:187_conv:375",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "That's great! How did they surprise you?",
+            "source_utter_ko": "대박! 진짜? 어떻게 서프라이즈 해줬는데?",
+            "situation_en": "It was around the time of my 18th birthday and I had mock exams so I couldnt really celebrate it. But my friends threw me a surprise party",
+            "situation_ko": "18번째 생일 즈음이었는데 시험이 있어서 제대로 축하하지 못했어. 하지만 친구들이 깜짝 파티를 열어줬어.",
+            "emotions": [
+              "grateful",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "That's great! How did they surprise you?",
+            "teaching_expression_en": "That's great! How did they surprise you?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "Oh, cool! How did you win it?",
+          "example_en": "Oh, cool! How did you win it?",
+          "explanation_ko": "상대의 성과에 반응하고, 어떻게 이겼는지 묻는 질문입니다.",
+          "question_ko": "‘오, 멋지다’라고 한 뒤 어떻게 이겼는지 물어보세요.",
+          "hint_ko": "Oh, cool 뒤에 How did you win it을 말하세요.",
+          "target_meaning_ko": "오, 멋지네요! 그것을 어떻게 이겼나요?",
+          "acceptable_answers": [
+            "Oh, cool! How did you win it?"
+          ],
+          "source": {
+            "conv_id": "hit:2092_conv:4184",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "Oh cool! How did you win it?",
+            "source_utter_ko": "와 대박! 어떻게 상 탄 거야?",
+            "situation_en": "When I secured the first prize in an event at my college",
+            "situation_ko": "내가 우리 대학 행사에서 1등 상을 받았을 때",
+            "emotions": [
+              "proud",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Oh cool! How did you win it?",
+            "teaching_expression_en": "Oh, cool! How did you win it?",
+            "correction_note_ko": "감탄사 뒤에 쉼표를 넣어 자연스러운 구두점을 보완했다."
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-event-results",
+      "title": "행사와 결과를 말하기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "행사의 목적을 설명하고 결과를 묻는 짧은 대화를 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "It was for a chess competition.",
+          "example_en": "It was for a chess competition.",
+          "explanation_ko": "어떤 일이 무엇을 위한 것이었는지 간단한 과거 시제로 설명합니다.",
+          "question_ko": "그것은 체스 대회를 위한 것이었다고 말해 보세요.",
+          "hint_ko": "It was for로 시작해 chess competition을 붙이세요.",
+          "target_meaning_ko": "그것은 체스 대회를 위한 것이었어요.",
+          "acceptable_answers": [
+            "It was for a chess competition."
+          ],
+          "source": {
+            "conv_id": "hit:2092_conv:4184",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "It was for a chess competition.",
+            "source_utter_ko": "체스 대회에서 받은 거야. 1등했어!",
+            "situation_en": "When I secured the first prize in an event at my college",
+            "situation_ko": "내가 우리 대학 행사에서 1등 상을 받았을 때",
+            "emotions": [
+              "proud",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "It was for a chess competition.",
+            "teaching_expression_en": "It was for a chess competition.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 6,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "How did it go?",
+          "example_en": "How did it go?",
+          "explanation_ko": "시험·면접·행사처럼 이미 끝난 일의 결과를 묻는 일상 질문입니다.",
+          "question_ko": "그 일이 어떻게 되었는지 물어보세요.",
+          "hint_ko": "How did it으로 시작해 go를 사용하세요.",
+          "target_meaning_ko": "어떻게 됐나요?",
+          "acceptable_answers": [
+            "How did it go?"
+          ],
+          "source": {
+            "conv_id": "hit:2538_conv:5076",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "How did it go?",
+            "source_utter_ko": "오, 정말? 어땠어?",
+            "situation_en": "I took the bar exam last month. I am sure I did well on it.",
+            "situation_ko": "지난달에 변호사 시험을 봤어. 잘 봤을 거라고 확신해.",
+            "emotions": [
+              "confident",
+              "hopeful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "How did it go?",
+            "teaching_expression_en": "How did it go?",
+            "correction_note_ko": "원문에 빠진 물음표만 보완했다."
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 4,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-sharing-memories",
+      "title": "친구와의 추억 나누기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "친구와의 기억을 묻고, 과거의 활동을 묻는 표현을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "What is your favorite memory with your friends?",
+          "example_en": "What is your favorite memory with your friends?",
+          "explanation_ko": "친구들과의 경험 가운데 가장 좋아하는 기억을 묻는 질문입니다.",
+          "question_ko": "친구들과 함께한 가장 좋아하는 기억이 무엇인지 물어보세요.",
+          "hint_ko": "What is your favorite memory로 시작하세요.",
+          "target_meaning_ko": "친구들과 함께한 가장 좋아하는 추억은 무엇인가요?",
+          "acceptable_answers": [
+            "What is your favorite memory with your friends?"
+          ],
+          "source": {
+            "conv_id": "hit:2013_conv:4027",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "What is your favorite memory with your friends?",
+            "source_utter_ko": "좋았겠다! 친구들이랑 재밌는 추억 많았겠네. 가장 좋아하는 추억은 뭐야?",
+            "situation_en": "I went back to my home where I grew up and a flood of good memories came bavk to me. I had so many fun times with my best friends when I was a child.",
+            "situation_ko": "내가 자랐던 고향에 돌아갔는데, 좋은 추억들이 밀려왔어. 어릴 때 제일 친한 친구들과 정말 즐거운 시간을 많이 보냈었거든.",
+            "emotions": [
+              "nostalgic",
+              "sentimental"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "What is your favorite memory with your friends?",
+            "teaching_expression_en": "What is your favorite memory with your friends?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 8,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "What did you and your friends do on that day?",
+          "example_en": "What did you and your friends do on that day?",
+          "explanation_ko": "친구들과 과거에 무엇을 했는지 묻는 과거 시제 질문입니다.",
+          "question_ko": "그날 상대와 친구들이 무엇을 했는지 물어보세요.",
+          "hint_ko": "What did you and your friends do로 시작해 보세요.",
+          "target_meaning_ko": "그날 당신과 친구들은 무엇을 했나요?",
+          "acceptable_answers": [
+            "What did you and your friends do on that day?"
+          ],
+          "source": {
+            "conv_id": "hit:243_conv:486",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "What did you and your friends do on that day?",
+            "source_utter_ko": "오, 그래? 반가웠겠다. 다들 어떻게 지내던?",
+            "situation_en": "I went to a new restaurant with friends I hadn't seen in a long time.",
+            "situation_ko": "오랜만에 못 본 친구들과 새로운 레스토랑에 갔어.",
+            "emotions": [
+              "excited",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "What did you and your friends do on that day?",
+            "teaching_expression_en": "What did you and your friends do on that day?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 10,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-adding-a-follow-up",
+      "title": "반응 뒤에 질문 덧붙이기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "긍정적인 반응에 간단한 후속 질문을 자연스럽게 붙입니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "That does sound fun! Was the food good?",
+          "example_en": "That does sound fun! Was the food good?",
+          "explanation_ko": "상대의 경험이 재미있어 보인다고 한 뒤, 음식에 관해 더 묻습니다.",
+          "question_ko": "재미있어 보인다고 반응한 뒤 음식이 좋았는지 물어보세요.",
+          "hint_ko": "That does sound fun 뒤에 Was the food good을 이어 보세요.",
+          "target_meaning_ko": "정말 재미있어 보이네요! 음식은 맛있었나요?",
+          "acceptable_answers": [
+            "That does sound fun! Was the food good?"
+          ],
+          "source": {
+            "conv_id": "hit:243_conv:486",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "That does sound fun! Was the food good?",
+            "source_utter_ko": "우와, 좋았겠다. 요즘 그 식당 인기 많다던데. 음식은 어땠어?",
+            "situation_en": "I went to a new restaurant with friends I hadn't seen in a long time.",
+            "situation_ko": "오랜만에 못 본 친구들과 새로운 레스토랑에 갔어.",
+            "emotions": [
+              "excited",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "That does sound fun! Was the food good?",
+            "teaching_expression_en": "That does sound fun! Was the food good?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 8,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "That was very nice of them. Was it for a special occasion?",
+          "example_en": "That was very nice of them. Was it for a special occasion?",
+          "explanation_ko": "상대방의 배려가 좋았다고 평가한 뒤 특별한 이유가 있었는지 묻습니다.",
+          "question_ko": "그들이 정말 친절했다고 말한 뒤, 특별한 행사를 위한 것이었는지 물어보세요.",
+          "hint_ko": "That was very nice of them 뒤에 Was it for a special occasion을 말하세요.",
+          "target_meaning_ko": "그들이 정말 친절했네요. 특별한 행사를 위한 것이었나요?",
+          "acceptable_answers": [
+            "That was very nice of them. Was it for a special occasion?"
+          ],
+          "source": {
+            "conv_id": "hit:253_conv:506",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "That was very nice of them. Was it for a special occasion?",
+            "source_utter_ko": "정말 친절하네. 특별한 날이었어?",
+            "situation_en": "My coworkers threw a party for me recently for my birthday. This was very unexpected.",
+            "situation_ko": "직장 동료들이 최근에 내 생일 파티를 열어줬어. 정말 예상치 못했어.",
+            "emotions": [
+              "surprised",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "That was very nice of them. Was it for a special occasion?",
+            "teaching_expression_en": "That was very nice of them. Was it for a special occasion?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 12,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-preferences-and-goals",
+      "title": "취향과 희망을 묻기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "상대의 꿈과 현재 취향을 묻는 일상적인 질문을 연습합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "Oh, excellent. What is your dream car?",
+          "example_en": "Oh, excellent. What is your dream car?",
+          "explanation_ko": "좋다고 반응한 뒤, 상대가 꿈꾸는 차를 묻는 질문입니다.",
+          "question_ko": "‘정말 훌륭하네요’라고 반응한 뒤 꿈의 차가 무엇인지 물어보세요.",
+          "hint_ko": "Oh, excellent 다음에 What is your dream car를 말하세요.",
+          "target_meaning_ko": "오, 훌륭하네요. 당신의 꿈의 차는 무엇인가요?",
+          "acceptable_answers": [
+            "Oh, excellent. What is your dream car?"
+          ],
+          "source": {
+            "conv_id": "hit:2580_conv:5161",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "Oh excellent. What is your dream car?",
+            "source_utter_ko": "우와, 진짜 대단하네! 드림카는 무엇인데?",
+            "situation_en": "I am so sure that I will be able to buy my dream car in 2 months",
+            "situation_ko": "두 달 안에 드림카를 구입할 수 있을 거라고 확신해.",
+            "emotions": [
+              "confident",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Oh excellent. What is your dream car?",
+            "teaching_expression_en": "Oh, excellent. What is your dream car?",
+            "correction_note_ko": "감탄사 뒤에 쉼표를 넣어 자연스러운 구두점을 보완했다."
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "Do you like it now?",
+          "example_en": "Do you like it now?",
+          "explanation_ko": "예전과 달리 지금은 어떤지 묻는 짧은 현재 질문입니다.",
+          "question_ko": "그것을 지금은 좋아하는지 물어보세요.",
+          "hint_ko": "Do you like로 시작해 it now를 붙이세요.",
+          "target_meaning_ko": "지금은 그것을 좋아하나요?",
+          "acceptable_answers": [
+            "Do you like it now?"
+          ],
+          "source": {
+            "conv_id": "hit:2586_conv:5172",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "Do you like it now?",
+            "source_utter_ko": "우유를 별로 안 좋아했구나. 지금은 좋아졌어?",
+            "situation_en": "I never liked milk. I always had skim milk growing up. Then I decided that maybe whole milk would be better, but I didn't like that either. But now that I've had 2% milk, I can enjoy it.",
+            "situation_ko": "나는 어릴 때부터 우유를 별로 좋아하지 않았어. 집에서는 항상 두유를 먹었거든. 그러다 나중에 우유가 더 나을까 해서 마셔봤는데, 그것도 별로였어. 그런데 저지방 우유를 마셔보니까 이제는 즐길 수 있더라고.",
+            "emotions": [
+              "content",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Do you like it now?",
+            "teaching_expression_en": "Do you like it now?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 5,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-a2-choices-and-encouragement",
+      "title": "선택을 말하고 응원하기",
+      "topic": "empathy",
+      "level": "A2",
+      "description": "자신의 선택에 대한 생각을 말하고 상대의 결과를 응원합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "No, but I am satisfied with my choice.",
+          "example_en": "No, but I am satisfied with my choice.",
+          "explanation_ko": "부정으로 답한 뒤 자신의 선택에는 만족한다고 덧붙입니다.",
+          "question_ko": "아니라고 답한 뒤, 자신의 선택에는 만족한다고 말해 보세요.",
+          "hint_ko": "No, but으로 시작해 satisfied with my choice를 사용하세요.",
+          "target_meaning_ko": "아니요, 하지만 제 선택에는 만족해요.",
+          "acceptable_answers": [
+            "No, but I am satisfied with my choice."
+          ],
+          "source": {
+            "conv_id": "hit:2586_conv:5172",
+            "utter_idx": 7,
+            "source_utter_idx": 7,
+            "source_utter_en": "No, but I am satisfied with my choice.",
+            "source_utter_ko": "아니, 그건 안 마셔봤지만 지금 저지방 우유에 만족하고 있어.",
+            "situation_en": "I never liked milk. I always had skim milk growing up. Then I decided that maybe whole milk would be better, but I didn't like that either. But now that I've had 2% milk, I can enjoy it.",
+            "situation_ko": "나는 어릴 때부터 우유를 별로 좋아하지 않았어. 집에서는 항상 두유를 먹었거든. 그러다 나중에 우유가 더 나을까 해서 마셔봤는데, 그것도 별로였어. 그런데 저지방 우유를 마셔보니까 이제는 즐길 수 있더라고.",
+            "emotions": [
+              "content",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "No, but I am satisfied with my choice.",
+            "teaching_expression_en": "No, but I am satisfied with my choice.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 8,
+              "connectors": [
+                "but"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "I'm happy it went well for you!",
+          "example_en": "I'm happy it went well for you!",
+          "explanation_ko": "상대에게 일이 잘 풀린 것을 기쁘게 생각한다고 말하는 표현입니다.",
+          "question_ko": "상대에게 일이 잘되어서 기쁘다고 말해 보세요.",
+          "hint_ko": "I'm happy 뒤에 it went well for you를 이어 보세요.",
+          "target_meaning_ko": "당신에게 일이 잘 풀려서 기뻐요!",
+          "acceptable_answers": [
+            "I'm happy it went well for you!"
+          ],
+          "source": {
+            "conv_id": "hit:271_conv:543",
+            "utter_idx": 4,
+            "source_utter_idx": 4,
+            "source_utter_en": "I'm happy it went well for you!",
+            "source_utter_ko": "잘 돼서 다행이야! 팀원들이랑 호흡도 잘 맞았나 보네.",
+            "situation_en": "I was doing a team effort, andf my team did well",
+            "situation_ko": "팀 프로젝트 발표 했는데 우리 팀이 잘했어.",
+            "emotions": [
+              "proud",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I'm happy it went well for you!",
+            "teaching_expression_en": "I'm happy it went well for you!",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "A2",
+            "screened_level": "A2",
+            "screened_level_reason_ko": "일상적 정보 교환을 위한 짧은 문장·질문 또는 기본 시제/어휘가 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 7,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-opportunities-and-change",
+      "title": "기회와 변화를 설명하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "사람을 돕는 기회와 직장에서의 변화를 연결해 설명합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I appreciate having the chance to be there for people when they are in need.",
+          "example_en": "I appreciate having the chance to be there for people when they are in need.",
+          "explanation_ko": "감사하는 이유와 다른 사람을 돕는 상황을 연결해 설명하는 발화입니다.",
+          "question_ko": "사람들이 도움이 필요할 때 곁에 있을 기회를 감사하게 생각한다고 말해 보세요.",
+          "hint_ko": "I appreciate having the chance로 시작해 when they are in need를 사용하세요.",
+          "target_meaning_ko": "사람들이 도움이 필요할 때 곁에 있을 기회를 감사하게 생각해요.",
+          "acceptable_answers": [
+            "I appreciate having the chance to be there for people when they are in need."
+          ],
+          "source": {
+            "conv_id": "hit:1124_conv:2248",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "I appreciate having the chance to be there for people when they are in need.",
+            "source_utter_ko": "요즘 봉사활동 하면서 느끼는 게 있어. 누군가에게 도움이 될 수 있다는 게 정말 감사한 일인 것 같아.",
+            "situation_en": "I really love having the chance to be there for people when they are in need.",
+            "situation_ko": "누군가가 필요로 할 때 그 곁에 있을 수 있는 기회가 정말 좋아.",
+            "emotions": [
+              "caring",
+              "grateful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I appreciate having the chance to be there for people when they are in need.",
+            "teaching_expression_en": "I appreciate having the chance to be there for people when they are in need.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 15,
+              "connectors": [
+                "when"
+              ],
+              "abstract_or_idiomatic_words": [
+                "appreciate"
+              ],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "I just applied for a promotion, and I should earn at least 10k more.",
+          "example_en": "I just applied for a promotion, and I should earn at least 10k more.",
+          "explanation_ko": "직장에서 한 일과 기대하는 변화를 연결해 말하는 발화입니다.",
+          "question_ko": "방금 승진을 신청했고 적어도 1만 달러를 더 벌 것이라고 말해 보세요.",
+          "hint_ko": "I just applied for a promotion으로 시작해 예상 수입 변화를 덧붙이세요.",
+          "target_meaning_ko": "방금 승진을 신청했고, 적어도 1만 달러를 더 벌 것 같아요.",
+          "acceptable_answers": [
+            "I just applied for a promotion, and I should earn at least 10k more."
+          ],
+          "source": {
+            "conv_id": "hit:115_conv:230",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "I just applied for a promotion, and I should earn at least 10k more.",
+            "source_utter_ko": "나 이번에 승진 심사 받았어. 통과되면 연봉이 최소 1천만 원은 오를 것 같아.",
+            "situation_en": "I just applied for a promotion, and I should earn at least 10k more.",
+            "situation_ko": "승진 신청을 했어. 적어도 천만 원은 더 벌 수 있을 거야.",
+            "emotions": [
+              "hopeful",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I just applied for a promotion, and I should earn at least 10k more.",
+            "teaching_expression_en": "I just applied for a promotion, and I should earn at least 10k more.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 14,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-reconnecting-with-friends",
+      "title": "친구를 다시 만나 경험 말하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "오랜만에 만난 친구들과 새 장소에서 한 경험을 연결해 말합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "The other day, I met up with some friends I hadn't seen in a while.",
+          "example_en": "The other day, I met up with some friends I hadn't seen in a while.",
+          "explanation_ko": "과거에 있었던 만남과 오랫동안 보지 못한 관계를 연결해 설명합니다.",
+          "question_ko": "며칠 전 한동안 보지 못했던 친구들을 만났다고 말해 보세요.",
+          "hint_ko": "The other day로 시작해 I hadn't seen in a while를 포함하세요.",
+          "target_meaning_ko": "며칠 전에 한동안 보지 못했던 친구들을 만났어요.",
+          "acceptable_answers": [
+            "The other day, I met up with some friends I hadn't seen in a while."
+          ],
+          "source": {
+            "conv_id": "hit:243_conv:486",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "The other day I met up with some friends I hadn't seen in a while",
+            "source_utter_ko": "며칠 전에 오랜만에 대학 동기들 만났어.",
+            "situation_en": "I went to a new restaurant with friends I hadn't seen in a long time.",
+            "situation_ko": "오랜만에 못 본 친구들과 새로운 레스토랑에 갔어.",
+            "emotions": [
+              "excited",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "The other day I met up with some friends I hadn't seen in a while",
+            "teaching_expression_en": "The other day, I met up with some friends I hadn't seen in a while.",
+            "correction_note_ko": "시간 부사구 뒤 쉼표와 문장 끝 마침표를 보완했다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 15,
+              "connectors": [
+                "while"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "We went to a new restaurant none of us had ever been to. It was fun!",
+          "example_en": "We went to a new restaurant none of us had ever been to. It was fun!",
+          "explanation_ko": "처음 가 본 장소와 그 경험에 대한 평가를 연결하는 과거 경험 발화입니다.",
+          "question_ko": "우리 모두 처음 가 본 새 식당에 갔고 재미있었다고 말해 보세요.",
+          "hint_ko": "We went to a new restaurant로 시작하고 had ever been to를 사용하세요.",
+          "target_meaning_ko": "우리 모두 처음 가 본 새 식당에 갔어요. 재미있었어요!",
+          "acceptable_answers": [
+            "We went to a new restaurant none of us had ever been to. It was fun!"
+          ],
+          "source": {
+            "conv_id": "hit:243_conv:486",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "We went to a new restaurant none of us had ever been to. It was fun!",
+            "source_utter_ko": "응, 다들 잘 지내더라. 우리 같이 강남에 새로 생긴 퓨전 한식당에 갔어. 진짜 재밌었어!",
+            "situation_en": "I went to a new restaurant with friends I hadn't seen in a long time.",
+            "situation_ko": "오랜만에 못 본 친구들과 새로운 레스토랑에 갔어.",
+            "emotions": [
+              "excited",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "We went to a new restaurant none of us had ever been to. It was fun!",
+            "teaching_expression_en": "We went to a new restaurant none of us had ever been to. It was fun!",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 16,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-memories-and-plans",
+      "title": "기억과 현재 계획을 이어 말하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "중요한 과거 경험과 현재의 대화 주제를 연결해 설명합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I will never forget the day I became a father. It was such an amazing experience.",
+          "example_en": "I will never forget the day I became a father. It was such an amazing experience.",
+          "explanation_ko": "잊지 못할 경험과 그 경험에 대한 감정을 두 문장으로 연결합니다.",
+          "question_ko": "아버지가 된 날을 절대 잊지 못하며, 그것은 놀라운 경험이었다고 말해 보세요.",
+          "hint_ko": "I will never forget the day로 시작해 amazing experience를 말하세요.",
+          "target_meaning_ko": "아버지가 된 날을 절대 잊지 못할 거예요. 정말 놀라운 경험이었어요.",
+          "acceptable_answers": [
+            "I will never forget the day I became a father. It was such an amazing experience."
+          ],
+          "source": {
+            "conv_id": "hit:408_conv:816",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "I will never forget the day I became a father. It was such an amazing experience.",
+            "source_utter_ko": "나 아빠 됐을 때 그 기분은 진짜 말로 표현 못 해.",
+            "situation_en": "I remember the day I became a father. Hearing my daughter's first cry melted my heart. I will never forget it.",
+            "situation_ko": "내가 아빠가 된 날을 기억해요. 딸의 첫 울음소리를 들었을 때 마음이 녹았어요. 절대 잊지 못할 거예요.",
+            "emotions": [
+              "nostalgic",
+              "joyful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I will never forget the day I became a father. It was such an amazing experience.",
+            "teaching_expression_en": "I will never forget the day I became a father. It was such an amazing experience.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 16,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [
+                "experience"
+              ],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "We spoke about our recent lives. Apparently, he is in the market for a new car.",
+          "example_en": "We spoke about our recent lives. Apparently, he is in the market for a new car.",
+          "explanation_ko": "최근 근황을 말한 뒤, 상대의 현재 계획을 덧붙이는 연결된 발화입니다.",
+          "question_ko": "최근 삶에 대해 이야기했고, 그는 새 차를 살 생각이라고 말해 보세요.",
+          "hint_ko": "We spoke about our recent lives로 시작해 in the market for a new car를 사용하세요.",
+          "target_meaning_ko": "우리는 최근 근황에 관해 이야기했어요. 그는 새 차를 살 생각인 것 같아요.",
+          "acceptable_answers": [
+            "We spoke about our recent lives. Apparently, he is in the market for a new car."
+          ],
+          "source": {
+            "conv_id": "hit:231_conv:462",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "We spoke about our recent lives. Apparently he is in the market for a new car.",
+            "source_utter_ko": "별 얘기는 아니고, 요즘 어떻게 지내시는지 안부 묻고 그랬지. 아, 아버지가 새 차 알아보신다고 하시더라.",
+            "situation_en": "I recently talked on the phone with my father. I had not spoken to him for a while. The whole experience was surreal because he doesn't appear often in my life. It reminds me of childhood.",
+            "situation_ko": "최근에 아버지와 통화를 했어. 오랫동안 대화를 하지 않았었어. 아버지와의 추억이 많이 없어서 그 경험이 매우 낯설었어. 어린 시절을 떠올리게 했어.",
+            "emotions": [
+              "nostalgic",
+              "sentimental"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "We spoke about our recent lives. Apparently he is in the market for a new car.",
+            "teaching_expression_en": "We spoke about our recent lives. Apparently, he is in the market for a new car.",
+            "correction_note_ko": "Apparently 뒤에 쉼표를 넣어 읽기 쉬운 표기로 다듬었다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 16,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-effort-and-results",
+      "title": "노력과 결과를 연결하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "공부와 저축의 노력, 그에 따른 기대를 연결해 설명합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I can't wait to get my final grades because I know I did great!",
+          "example_en": "I can't wait to get my final grades because I know I did great!",
+          "explanation_ko": "기대하는 이유를 because절로 연결해 말하는 발화입니다.",
+          "question_ko": "잘 봤다는 것을 알기 때문에 최종 성적을 빨리 받고 싶다고 말해 보세요.",
+          "hint_ko": "I can't wait로 시작하고 because I know를 사용하세요.",
+          "target_meaning_ko": "잘 봤다는 것을 알기 때문에 최종 성적을 빨리 받고 싶어요!",
+          "acceptable_answers": [
+            "I can't wait to get my final grades because I know I did great!"
+          ],
+          "source": {
+            "conv_id": "hit:2558_conv:5117",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "I can't wait to get my final grades because I know I did great!",
+            "source_utter_ko": "응, 나름대로 잘 친 것 같아. 그래서 성적이 정말 기대돼! 얼른 나왔으면 좋겠다.",
+            "situation_en": "My last semester of school is coming to an end. I can't wait to get my final grades because I know I did great!",
+            "situation_ko": "이번 학기 마지막이 다가오고 있어. 기말 성적이 너무 기대돼. 잘했을 거라고 확신해!",
+            "emotions": [
+              "confident",
+              "hopeful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I can't wait to get my final grades because I know I did great!",
+            "teaching_expression_en": "I can't wait to get my final grades because I know I did great!",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 14,
+              "connectors": [
+                "because"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "I have worked so hard, and I saved a large chunk of the money.",
+          "example_en": "I have worked so hard, and I saved a large chunk of the money.",
+          "explanation_ko": "계속해 온 노력과 그 결과를 현재완료와 과거 시제로 연결합니다.",
+          "question_ko": "정말 열심히 일했고 돈의 큰 부분을 저축했다고 말해 보세요.",
+          "hint_ko": "I have worked so hard로 시작해 saved a large chunk of the money를 이어 보세요.",
+          "target_meaning_ko": "정말 열심히 일했고, 돈의 큰 부분을 저축했어요.",
+          "acceptable_answers": [
+            "I have worked so hard, and I saved a large chunk of the money."
+          ],
+          "source": {
+            "conv_id": "hit:2580_conv:5161",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "I have worked so hard and I saved a large chunk of the money",
+            "source_utter_ko": "열심히 일하고 돈도 꽤 모아놨거든.",
+            "situation_en": "I am so sure that I will be able to buy my dream car in 2 months",
+            "situation_ko": "두 달 안에 드림카를 구입할 수 있을 거라고 확신해.",
+            "emotions": [
+              "confident",
+              "excited"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I have worked so hard and I saved a large chunk of the money",
+            "teaching_expression_en": "I have worked so hard, and I saved a large chunk of the money.",
+            "correction_note_ko": "독립절 사이에 쉼표와 문장 끝 마침표를 보완했다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 14,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-changing-preferences",
+      "title": "취향이 바뀐 이유 설명하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "어릴 때의 취향과 새로 시도한 경험을 비교해 설명합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I never liked milk growing up because my family drank skim.",
+          "example_en": "I never liked milk growing up because my family drank skim.",
+          "explanation_ko": "어릴 때의 선호와 그 이유를 because절로 연결해 설명합니다.",
+          "question_ko": "어릴 때 가족이 탈지우유를 마셔서 우유를 좋아한 적이 없었다고 말해 보세요.",
+          "hint_ko": "I never liked milk growing up으로 시작해 because를 사용하세요.",
+          "target_meaning_ko": "어릴 때 가족이 탈지우유를 마셔서 우유를 좋아한 적이 없었어요.",
+          "acceptable_answers": [
+            "I never liked milk growing up because my family drank skim."
+          ],
+          "source": {
+            "conv_id": "hit:2586_conv:5172",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "I never liked milk growing up, because my family drank skim.",
+            "source_utter_ko": "나는 어릴 때부터 우유를 별로 좋아하지 않았어. 집에서는 항상 두유를 먹었거든.",
+            "situation_en": "I never liked milk. I always had skim milk growing up. Then I decided that maybe whole milk would be better, but I didn't like that either. But now that I've had 2% milk, I can enjoy it.",
+            "situation_ko": "나는 어릴 때부터 우유를 별로 좋아하지 않았어. 집에서는 항상 두유를 먹었거든. 그러다 나중에 우유가 더 나을까 해서 마셔봤는데, 그것도 별로였어. 그런데 저지방 우유를 마셔보니까 이제는 즐길 수 있더라고.",
+            "emotions": [
+              "content",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I never liked milk growing up, because my family drank skim.",
+            "teaching_expression_en": "I never liked milk growing up because my family drank skim.",
+            "correction_note_ko": "불필요한 쉼표를 제거해 이유절 연결을 자연스럽게 다듬었다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 11,
+              "connectors": [
+                "because"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!",
+          "example_en": "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!",
+          "explanation_ko": "서로 다른 경험을 but으로 대조해 현재의 취향 변화를 설명합니다.",
+          "question_ko": "처음에는 전지우유가 별로였지만 2% 우유는 먹어 보니 좋아한다고 말해 보세요.",
+          "hint_ko": "first I tried와 But I just tried를 대비해 말하세요.",
+          "target_meaning_ko": "처음에는 전지우유를 먹어 봤는데 별로였어요. 하지만 방금 2% 우유를 먹어 봤고 좋아요!",
+          "acceptable_answers": [
+            "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!"
+          ],
+          "source": {
+            "conv_id": "hit:2586_conv:5172",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!",
+            "source_utter_ko": "처음에는 그냥 우유를 시도해봤는데, 그건 정말 별로였어. 그런데 저지방 우유를 마셔보니까 그건 괜찮더라!",
+            "situation_en": "I never liked milk. I always had skim milk growing up. Then I decided that maybe whole milk would be better, but I didn't like that either. But now that I've had 2% milk, I can enjoy it.",
+            "situation_ko": "나는 어릴 때부터 우유를 별로 좋아하지 않았어. 집에서는 항상 두유를 먹었거든. 그러다 나중에 우유가 더 나을까 해서 마셔봤는데, 그것도 별로였어. 그런데 저지방 우유를 마셔보니까 이제는 즐길 수 있더라고.",
+            "emotions": [
+              "content",
+              "nostalgic"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!",
+            "teaching_expression_en": "Well, first I tried whole milk, and that was gross. But I just tried 2% milk, and I like it!",
+            "correction_note_ko": "문장 첫머리에 쉼표를 추가해 구두점을 일관되게 다듬었다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 19,
+              "connectors": [
+                "but"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-experiences-in-context",
+      "title": "경험을 맥락과 함께 설명하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "다른 사람들의 이야기와 집에서 해결한 일을 세부 맥락과 함께 말합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I've heard a lot of people say something similar. Did you go there a lot?",
+          "example_en": "I've heard a lot of people say something similar. Did you go there a lot?",
+          "explanation_ko": "다른 사람들에게서 들은 일반적 경험을 말한 뒤, 상대의 경험을 더 묻습니다.",
+          "question_ko": "많은 사람이 비슷한 말을 하는 것을 들었고, 상대가 그곳에 자주 갔는지 물어보세요.",
+          "hint_ko": "I've heard a lot of people로 시작한 뒤 Did you go there a lot을 말하세요.",
+          "target_meaning_ko": "많은 사람이 비슷한 말을 하는 것을 들었어요. 그곳에 자주 갔나요?",
+          "acceptable_answers": [
+            "I've heard a lot of people say something similar. Did you go there a lot?"
+          ],
+          "source": {
+            "conv_id": "hit:413_conv:826",
+            "utter_idx": 2,
+            "source_utter_idx": 2,
+            "source_utter_en": "I've heard a lot of people say something similar. Did you go there a lot?",
+            "source_utter_ko": "왜? 어릴 때 자주 갔었어?",
+            "situation_en": "Last week when I heard about Toys r us closing it made me think of other memories from my childhood. I started reminiscing about the toys, music, games and so much more",
+            "situation_ko": "지난주에 근처 문방구가 문을 닫는다는 소식을 들었을 때 어릴 적 기억들이 떠올랐어. 장난감, 음악, 게임 등 많은 것들을 회상했어.",
+            "emotions": [
+              "nostalgic",
+              "sentimental"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I've heard a lot of people say something similar. Did you go there a lot?",
+            "teaching_expression_en": "I've heard a lot of people say something similar. Did you go there a lot?",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 15,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": true
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "A light switch in my house stopped working, and I was able to fix it without looking up how.",
+          "example_en": "A light switch in my house stopped working, and I was able to fix it without looking up how.",
+          "explanation_ko": "문제 발생, 해결, 해결 방법을 한 발화 안에서 연결해 설명합니다.",
+          "question_ko": "집의 전등 스위치가 작동을 멈췄지만 방법을 찾아보지 않고 고칠 수 있었다고 말해 보세요.",
+          "hint_ko": "stopped working과 was able to fix it을 연결하세요.",
+          "target_meaning_ko": "집의 전등 스위치가 작동을 멈췄지만, 방법을 찾아보지 않고 고칠 수 있었어요.",
+          "acceptable_answers": [
+            "A light switch in my house stopped working, and I was able to fix it without looking up how."
+          ],
+          "source": {
+            "conv_id": "hit:465_conv:930",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "A light switch in my house stopped working and I was able to fix it without looking up how.",
+            "source_utter_ko": "있잖아, 어제 우리집 전기 스위치 고장 났는데 혼자 고쳤다!",
+            "situation_en": "I was able to fix a light switch using what I know about electrical engineering.",
+            "situation_ko": "내가 아는 전기 지식을 사용해서 스위치를 고칠 수 있었어.",
+            "emotions": [
+              "proud",
+              "proud"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "A light switch in my house stopped working and I was able to fix it without looking up how.",
+            "teaching_expression_en": "A light switch in my house stopped working, and I was able to fix it without looking up how.",
+            "correction_note_ko": "독립절 사이에 쉼표를 넣어 읽기 쉬운 표기로 다듬었다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 19,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": true,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-problems-and-support",
+      "title": "문제 해결과 관계를 설명하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "작은 문제의 원인과 오랜 친구가 주는 영향을 설명합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "Thanks. It wasn't too messed up, though. A wire just needed to be reconnected.",
+          "example_en": "Thanks. It wasn't too messed up, though. A wire just needed to be reconnected.",
+          "explanation_ko": "문제가 심하지 않았다는 평가와 구체적인 원인을 이어서 설명합니다.",
+          "question_ko": "고맙지만 문제가 아주 심한 것은 아니었고, 전선 하나를 다시 연결하면 됐다고 말해 보세요.",
+          "hint_ko": "It wasn't too messed up, though 다음에 원인을 설명하세요.",
+          "target_meaning_ko": "고마워요. 그래도 문제가 아주 심한 것은 아니었어요. 전선 하나를 다시 연결하면 됐어요.",
+          "acceptable_answers": [
+            "Thanks. It wasn't too messed up, though. A wire just needed to be reconnected."
+          ],
+          "source": {
+            "conv_id": "hit:465_conv:930",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "Thanks. It wasn't too messed up though. A wire just needed to be reconnected.",
+            "source_utter_ko": "고마워. 근데 별거 아니었어. 그냥 선 하나 다시 연결하는 거였어.",
+            "situation_en": "I was able to fix a light switch using what I know about electrical engineering.",
+            "situation_ko": "내가 아는 전기 지식을 사용해서 스위치를 고칠 수 있었어.",
+            "emotions": [
+              "proud",
+              "proud"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "Thanks. It wasn't too messed up though. A wire just needed to be reconnected.",
+            "teaching_expression_en": "Thanks. It wasn't too messed up, though. A wire just needed to be reconnected.",
+            "correction_note_ko": "though 앞뒤에 쉼표를 넣어 삽입 어구를 명확히 했다."
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 14,
+              "connectors": [
+                "though"
+              ],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "She has been my friend for 19 years. She pushes me to do better too.",
+          "example_en": "She has been my friend for 19 years. She pushes me to do better too.",
+          "explanation_ko": "오랜 관계와 그 관계가 현재 자신에게 주는 영향을 연결해 말합니다.",
+          "question_ko": "그녀는 19년 된 친구이고, 내가 더 잘하도록 이끌어 준다고 말해 보세요.",
+          "hint_ko": "She has been my friend로 시작한 뒤 pushes me to do better를 말하세요.",
+          "target_meaning_ko": "그녀는 19년 된 친구예요. 또 제가 더 잘하도록 이끌어 줘요.",
+          "acceptable_answers": [
+            "She has been my friend for 19 years. She pushes me to do better too."
+          ],
+          "source": {
+            "conv_id": "hit:396_conv:793",
+            "utter_idx": 3,
+            "source_utter_idx": 3,
+            "source_utter_en": "She has been my friend for 19 years. She pushes me to do better too.",
+            "source_utter_ko": "맞아. 우리가 친구로 지낸 지 19년인데, 나도 더 잘하도록 자극해 줘.",
+            "situation_en": "My friend ended up passing her semester with flying colors, despite the fact that she has 2 children and didn't do well in high school. She pushed hard to overcome her circumstances.",
+            "situation_ko": "친구가 두 아이가 있는데도 학기를 훌륭하게 마쳤어. 고등학교 때는 잘 못했는데도 말이야. 그녀는 상황을 극복하려고 열심히 노력했어.",
+            "emotions": [
+              "proud",
+              "impressed"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "She has been my friend for 19 years. She pushes me to do better too.",
+            "teaching_expression_en": "She has been my friend for 19 years. She pushes me to do better too.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 14,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [
+                "\\b(?:has|have|had) been\\b"
+              ],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "koed-b1-wishes-and-encouragement",
+      "title": "바람과 응원을 표현하기",
+      "topic": "empathy",
+      "level": "B1",
+      "description": "상대를 위한 바람과 자신의 가정적 바람을 연결해 표현합니다.",
+      "estimated_seconds": 180,
+      "items": [
+        {
+          "expression_en": "I hope you find someone like that. I believe everyone needs and deserves friends like that.",
+          "example_en": "I hope you find someone like that. I believe everyone needs and deserves friends like that.",
+          "explanation_ko": "상대에게 바라는 일을 말한 뒤, 일반적인 믿음을 근거로 덧붙입니다.",
+          "question_ko": "그런 사람을 만나길 바라고, 모두가 그런 친구를 필요로 하고 가질 자격이 있다고 믿는다고 말해 보세요.",
+          "hint_ko": "I hope you find로 시작한 뒤 I believe everyone을 이어 보세요.",
+          "target_meaning_ko": "당신이 그런 사람을 만나길 바라요. 모두가 그런 친구를 필요로 하고 가질 자격이 있다고 믿어요.",
+          "acceptable_answers": [
+            "I hope you find someone like that. I believe everyone needs and deserves friends like that."
+          ],
+          "source": {
+            "conv_id": "hit:396_conv:793",
+            "utter_idx": 5,
+            "source_utter_idx": 5,
+            "source_utter_en": "I hope you find someone like that. I believe everyone needs and deserves friends like that.",
+            "source_utter_ko": "19년이나 된 우정이라니, 그것도 정말 대단해. 서로에게 좋은 영향을 주는 관계인 것 같아 보기 좋다.",
+            "situation_en": "My friend ended up passing her semester with flying colors, despite the fact that she has 2 children and didn't do well in high school. She pushed hard to overcome her circumstances.",
+            "situation_ko": "친구가 두 아이가 있는데도 학기를 훌륭하게 마쳤어. 고등학교 때는 잘 못했는데도 말이야. 그녀는 상황을 극복하려고 열심히 노력했어.",
+            "emotions": [
+              "proud",
+              "impressed"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I hope you find someone like that. I believe everyone needs and deserves friends like that.",
+            "teaching_expression_en": "I hope you find someone like that. I believe everyone needs and deserves friends like that.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 16,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        },
+        {
+          "expression_en": "I sometimes wish I could go back to high school and be a kid again.",
+          "example_en": "I sometimes wish I could go back to high school and be a kid again.",
+          "explanation_ko": "현재의 가정적 바람을 wish와 could로 연결해 말합니다.",
+          "question_ko": "가끔 고등학교 시절로 돌아가 다시 아이가 되고 싶다고 말해 보세요.",
+          "hint_ko": "I sometimes wish I could로 시작해 go back to high school을 사용하세요.",
+          "target_meaning_ko": "가끔 고등학교 시절로 돌아가 다시 아이가 되고 싶어요.",
+          "acceptable_answers": [
+            "I sometimes wish I could go back to high school and be a kid again."
+          ],
+          "source": {
+            "conv_id": "hit:456_conv:912",
+            "utter_idx": 1,
+            "source_utter_idx": 1,
+            "source_utter_en": "I sometimes wish I could go back to high school and be a kid again.",
+            "source_utter_ko": "가끔 고등학교 때로 돌아가고 싶다.",
+            "situation_en": "There are certain times when I hear a song come on the radio, that came out when I was in high school, I want to go back to those days. I wish I could be young and carefree again with no worries. I miss those days.",
+            "situation_ko": "라디오에서 고등학교 때 나왔던 노래가 나올 때마다 그 시절로 돌아가고 싶어져. 다시 젊고 걱정 없던 시절로 돌아가고 싶어. 그때가 그리워.",
+            "emotions": [
+              "nostalgic",
+              "hopeful"
+            ]
+          },
+          "text_transformation": {
+            "source_utter_en": "I sometimes wish I could go back to high school and be a kid again.",
+            "teaching_expression_en": "I sometimes wish I could go back to high school and be a kid again.",
+            "correction_note_ko": null
+          },
+          "difficulty": {
+            "level": "B1",
+            "screened_level": "B1",
+            "screened_level_reason_ko": "연결·이유·대조 또는 추상/정서 어휘가 있어 연결된 발화 능력이 필요합니다.",
+            "level_override_reason_ko": null,
+            "features": {
+              "word_count": 15,
+              "connectors": [],
+              "abstract_or_idiomatic_words": [],
+              "b1_grammar_patterns": [],
+              "has_simple_past_or_future": false,
+              "is_question": false
+            },
+            "review_status": "human-reviewed-intent-and-safety"
+          }
+        }
+      ]
+    }
+  ]
+}
