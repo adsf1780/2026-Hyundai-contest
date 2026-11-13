@@ -1,6 +1,5 @@
 import os
 import time
-from urllib.parse import quote
 from uuid import uuid4
 
 import json
@@ -320,22 +319,10 @@ Provide an improved English version of the learner's response.
 
 ## 8. Output Requirements
 
-Return exactly one valid JSON object.
-
-The output must contain two top-level sections:
-
-**checks:** Diagnostic results for the four evaluation criteria.
-
-**evaluation:** Final evaluation results to be delivered to the learning server.
-
-The `evaluation` object must include the following fields:
-
-- `verdict`
-- `meaning_score`
-- `feedback_ko`
-- `suggested_answer_en`
-- `retry_recommended`
-- `rubric_version`
+Return exactly one valid JSON object matching the Evaluation schema below.
+Do not wrap the result in `checks` or `evaluation` objects. Diagnostic checks
+are for internal reasoning only. Do not include `rubric_version`; the server
+assigns that value.
 
 The `feedback_ko` field must contain no more than 500 characters.
 
@@ -346,7 +333,6 @@ The `retry_recommended` field must be determined based on the correctness verdic
 - `needs_improvement`: `true`
 - `ungradable`: `true`
 
-Set `rubric_version` to `meaning-vocab-v1`.
 '''
         + dump(Evaluation.model_json_schema())
     )
@@ -363,8 +349,6 @@ Set `rubric_version` to `meaning-vocab-v1`.
                 "content": json.dumps(data, ensure_ascii=False),
             },
         ],
-        "response_format": {"type": "json_object"},
-        "max_completion_tokens": 2048,
     }
 
     try:
@@ -373,9 +357,7 @@ Set `rubric_version` to `meaning-vocab-v1`.
             trust_env=False,
         ) as client:
             response = client.post(
-                "https://copa.codyssey.kr/v1/chat/completions"
-                + quote(model, safe="")
-                + ":generateContent",
+                "https://copa.codyssey.kr/v1/chat/completions",
                 headers={"Authorization": f"Bearer {key}"},
                 json=payload,
             )
@@ -388,16 +370,7 @@ Set `rubric_version` to `meaning-vocab-v1`.
 
         response.raise_for_status()
 
-        candidate = response.json()["candidates"][0]
-
-        if candidate.get("finishReason") != "STOP":
-            raise ValueError("incomplete")
-
-        output = "".join(
-            part.get("text", "")
-            for part in candidate["content"]["parts"]
-            if not part.get("thought")
-        )
+        output = response_text(response.json())
 
         return Evaluation.model_validate_json(output), model
 
@@ -409,6 +382,35 @@ Set `rubric_version` to `meaning-vocab-v1`.
 
     except (KeyError, IndexError, ValueError, ValidationError):
         raise Fault("MODEL_OUTPUT_INVALID", 503)
+
+
+def response_text(payload):
+    if not isinstance(payload, dict):
+        raise ValueError("provider response must be an object")
+
+    choices = payload.get("choices")
+
+    if not isinstance(choices, list) or not choices:
+        raise ValueError("provider response has no choices")
+
+    choice = choices[0]
+
+    if (
+        not isinstance(choice, dict)
+        or choice.get("finish_reason") != "stop"
+    ):
+        raise ValueError("incomplete")
+
+    message = choice.get("message")
+    output = message.get("content") if isinstance(message, dict) else None
+
+    if not isinstance(output, str):
+        raise ValueError("provider response content must be text")
+
+    if not output.strip():
+        raise ValueError("provider response content is empty")
+
+    return output
 
 
 def finish(job, result=None, error=None, model="test"):
