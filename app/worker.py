@@ -372,7 +372,7 @@ Set `rubric_version` to `meaning-vocab-v1`.
             timeout=httpx.Timeout(45, connect=10),
             trust_env=False,
         ) as client:
-            response = response.post(
+            response = client.post(
                 "https://copa.codyssey.kr/v1/chat/completions"
                 + quote(model, safe="")
                 + ":generateContent",
