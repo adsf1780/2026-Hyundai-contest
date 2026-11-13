@@ -1,15 +1,28 @@
-# 이어톡 실행 가이드
+# 이어톡
 
-Pleos 차량용 영어 학습 앱입니다. 아래 명령은 **Windows PowerShell에서 저장소 루트 폴더**를 기준으로 실행합니다. 현재 `front` 브랜치의 AI 평가는 Gemini API를 사용합니다.
+이어톡은 실시간 주행 상황에 맞춰 학습 내용을 제공하고, 주행 중 학습이 중단되더라도 자연스럽게 이어갈 수 있도록 돕는 **Pleos 기반 맞춤형 음성 영어 학습 앱**입니다.
 
-## 준비
+아래 실행 방법은 **Windows PowerShell에서 저장소 루트 폴더**를 기준으로 합니다. AI 평가는 COPA API(`copa.codyssey.kr`)를 사용합니다.
 
-- Python, Docker Desktop, Android Studio 설치
-- Docker Desktop 실행
-- Android Studio의 Device Manager에서 Pleos Connect 2.1.0 에뮬레이터 실행
-- 앱을 빌드하려면 Java 17 이상과 Android SDK Platform 36 설치
+## 테스트 환경 및 필요한 설정
+
+- Windows에서 Python, Docker Desktop, Android Studio를 사용하며, DB는 PostgreSQL 17입니다.
+- 개발에 사용한 에뮬레이터는 **Pleos Connect v2.1.0 (Android API 34, x86_64)**이며, 화면은 **2560 × 1440 px, 160 dpi, 가로 방향**입니다.
+- 앱 빌드에는 Java 17 이상, Android SDK Platform 36, Build Tools 35.0.0이 필요합니다. Gradle은 프로젝트에 포함된 래퍼를 사용합니다.
+- Docker Desktop과 에뮬레이터를 실행하고, 음성 학습을 위해 에뮬레이터의 마이크 입력을 켭니다. 학습 동작은 주차 상태에서 확인합니다.
+- 아래 안내에 따라 DB 연결 정보, 기기 토큰, COPA API 키와 모델 ID를 설정하고 백엔드와 AI 평가 워커를 함께 실행합니다.
 
 [Pleos 설치 안내](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator) · [마이크 설정 안내](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/configure-pleos-connect-emulator)
+
+## 제출 APK
+
+제출용으로 서명한 release APK: [뭐시기뭐시기_이어톡_release.apk](apk/뭐시기뭐시기_이어톡_release.apk)
+
+아래 명령으로 설치한 뒤, 앱에 HTTPS 서버 주소와 발급받은 기기 토큰을 입력합니다. 로컬 HTTP 서버로 개발·테스트할 때는 아래의 debug APK 실행 방법을 사용합니다.
+
+```powershell
+adb -e install -r ".\apk\뭐시기뭐시기_이어톡_release.apk"
+```
 
 ## 1. 최초 준비
 
@@ -33,14 +46,14 @@ docker compose up -d --wait
 
 DB 데이터는 Docker의 `pgdata` 볼륨에 보관됩니다. 이후 실행 시 기존 데이터를 사용합니다. 환경변수는 현재 PowerShell 창에서만 유지됩니다.
 
-### APK 빌드와 설치
+### 개발용 APK 빌드와 설치
 
 ```powershell
 .\frontend\gradlew.bat -p frontend assembleDebug
 adb -e install -r .\frontend\build\outputs\apk\debug\EarTalk-debug.apk
 ```
 
-APK가 준비되어 있다면 설치 명령부터 실행합니다. 앱 변경 후에도 위 명령으로 다시 빌드하고 설치합니다. `adb -e`는 에뮬레이터가 하나 실행 중인 경우를 기준으로 합니다.
+개발용 APK가 준비되어 있다면 설치 명령부터 실행합니다. 앱 변경 후에도 위 명령으로 다시 빌드하고 설치합니다. `adb -e`는 에뮬레이터가 하나 실행 중인 경우를 기준으로 합니다. 제출용 release APK는 HTTPS 서버 주소로 연결해야 합니다.
 
 ## 2. 백엔드 실행
 
@@ -58,17 +71,19 @@ docker compose up -d --wait
 
 ## 3. AI 평가 워커 실행
 
-**별도 PowerShell 창을 저장소 루트에서 열고** 실행합니다. 실제 Gemini API 키와 사용할 모델 ID를 입력합니다.
+**별도 PowerShell 창을 저장소 루트에서 열고** 실행합니다. 발급받은 COPA API 키와 해당 API에서 사용할 수 있는 모델 ID를 입력합니다.
 
 ```powershell
 $env:DATABASE_URL = "postgresql+psycopg://eartalk:eartalk_local_2026@127.0.0.1:15432/eartalk"
-$env:GEMINI_API_KEY = "사용할 Gemini API 키"
-$env:GEMINI_MODEL = "사용할 Gemini 모델 ID"
+$env:API_KEY = "발급받은 COPA API 키"
+$env:MODEL = "사용할 모델 ID"
 
 .\.venv\Scripts\python.exe -m app.worker
 ```
 
-이 창도 열어 둡니다. 워커가 실행되어야 제출한 영어 답변의 AI 평가가 처리됩니다. API 키는 로컬 환경변수로 설정합니다.
+이 창도 열어 둡니다. 백엔드와 워커는 같은 `DATABASE_URL`을 사용해야 하며, 워커가 실행되어야 제출한 영어 답변의 AI 평가가 처리됩니다.
+
+최신 `main`의 워커는 `API_KEY`와 `MODEL` 환경변수를 사용합니다. 두 값은 워커를 실행하는 PowerShell 창에 설정해야 하며, 새 창을 열면 다시 설정합니다. API 키는 로컬 환경변수로만 설정합니다.
 
 ## 4. 앱 실행과 연결
 
