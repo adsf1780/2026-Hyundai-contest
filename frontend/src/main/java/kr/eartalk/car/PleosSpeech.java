@@ -72,6 +72,7 @@ final class PleosSpeech {
     }
 
     private Consumer<String> answer;
+    private static final long FINAL_RESULT_GRACE_MS = 300L;
     boolean listen(Consumer<String> callback) {
         if (!listeningReady || current != null) return false;
         input.setLocale(Locale.US);
@@ -84,9 +85,19 @@ final class PleosSpeech {
             public void onUpdated(String transcript, boolean complete) {
                 if (complete) main.post(() -> finish(this, transcript));
             }
-            public void onEndedRecognition() { main.post(() -> finish(this, null)); }
+            public void onEndedRecognition() {
+                main.postDelayed(
+                    () -> finish(this, null),
+                    FINAL_RESULT_GRACE_MS
+                );
+            }
             public void onError(ai.pleos.playground.stt.constant.ErrorType error) {
-                main.post(() -> { if (current == this) { notice.accept("음성 인식 오류 · " + error); finish(this, null); } });
+                main.post(() -> {
+                    if (current == this) {
+                        notice.accept("음성 인식 오류 · " + error);
+                        finish(this, null);
+                    }
+                });
             }
         };
         input.addListener(current);
